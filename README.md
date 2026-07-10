@@ -1,69 +1,89 @@
-🏛️ District Pauri – Official Portal 🚀 🌟 Welcome to the Digital Gateway of Pauri! 🌟 ⚠️ Service Notice: Our portal is currently undergoing scheduled maintenance or experiencing heavy traffic (HTTP 503). Please check back shortly! 🛠️
+# 🗺️ District Pauri – GIS Viewer
 
-📖 About This Project This repository hosts the official web portal for Pauri District, designed to provide citizens with easy access to:
+An interactive, map-based portal for Almora District, built with React, TypeScript, Leaflet, and the Google Gemini API. The app lets citizens and administrators explore geospatial data, layers, and district information through a fast, modern web interface.
 
-🏢 Government Services – e-Governance at your fingertips
+Live demo: https://district-Pauri.onrender.com/
 
-📰 Latest News & Updates – Stay informed about district events
+📖 About
+This repository hosts the Pauri GIS Viewer — a web application for visualizing geographic and administrative data for Pauri District, Uttarakhand. It combines an interactive Leaflet map with an Express/Node backend and Gemini-powered AI capabilities.
 
-📊 Important Documents – Forms, policies, and public notices
+✨ Features
+🗺️ Interactive mapping with Leaflet and proj4 for coordinate/projection handling
+⚛️ Modern frontend built with React 19, TypeScript, and Vite
+🤖 AI-assisted features powered by the @google/genai (Gemini) SDK
+🎨 Styled with Tailwind CSS and animated with Motion
+🖥️ Node/Express backend (server.ts) serving the app and API routes
+🗄️ MongoDB integration for persisting application data
+🎛️ Icons via Lucide
+🛠️ Tech Stack
+Layer	Technology
+Frontend	React 19, TypeScript, Vite, Tailwind CSS
+Mapping	Leaflet, proj4
+AI	Google Gemini (@google/genai)
+Backend	Node.js, Express, tsx
+Database	MongoDB
+Animation / UI	Motion, Lucide React
+Tooling	esbuild, TypeScript compiler
+📂 Project Structure
+District-Pauri/
+├── src/                  # Application source (components, map logic, etc.)
+├── index.html            # App entry HTML
+├── server.ts             # Express server entry point
+├── check-properties.js   # Utility/validation script
+├── metadata.json         # App metadata (used by AI Studio)
+├── vite.config.ts        # Vite build configuration
+├── tsconfig.json         # TypeScript configuration
+├── .env.example           # Environment variable template
+├── package.json
+└── README.md
+🚀 Getting Started
+Prerequisites
+Node.js (LTS recommended)
+npm
+A Gemini API key
+Installation
+# Clone the repository
+git clone https://github.com/RawatGitLab/District-Pauri.git
 
-📍 Local Resources – Maps, directories, and emergency contacts
+# Navigate into the project directory
+cd District-Pauri
 
-🤝 Citizen Engagement – Feedback, grievances, and community forums
+# Install dependencies
+npm install
+Environment Variables
+Copy .env.example to .env and fill in the required values:
 
-✨ Key Features Feature Description Emoji Responsive Design Works seamlessly on desktop, tablet, and mobile 📱💻 Multilingual Support Content available in English & Hindi 🔤🇮🇳 Real-time Updates Dynamic content powered by live data feeds 🔄⚡ Secure Access SSL-encrypted connections for data privacy 🔒🛡️ Accessibility Compliant with WCAG standards for all users ♿🤝 🚀 Getting Started Prerequisites 🌐 Any modern web browser (Chrome, Firefox, Edge, Safari)
+cp .env.example .env
+Variable	Description
+GEMINI_API_KEY	Required for Gemini AI API calls
+APP_URL	The URL where the app is hosted (used for self-referential links/callbacks)
+Available Scripts
+Command	Description
+npm run dev	Start the development server (tsx server.ts)
+npm run build	Build the frontend with Vite and bundle the server with esbuild
+npm start	Run the production build (dist/server.cjs)
+npm run preview	Preview the production Vite build
+npm run lint	Type-check the project (tsc --noEmit)
+npm run clean	Remove build artifacts
+Running Locally
+npm run dev
+Then open the URL printed in your terminal (typically http://localhost:5173 or the port configured by Vite/Express).
 
-📶 Stable internet connection
-
-Visit the Portal 🔗 Live URL: https://district-pauri.onrender.com/
-
-Pro Tip: If you encounter the 503 error, try refreshing after a few minutes or visit during off-peak hours ⏳
-
-👨‍💻 For Developers Want to contribute or run this project locally? Follow these steps:
-
-bash
-
-Clone the repository git clone https://github.com/your-username/district-Pauri.git
-
-Navigate to project directory cd district-Pauri
-
-Install dependencies (if any) npm install # or pip install -r requirements.txt
-
-Start the development server npm start # or python app.py 🛠️ Tech Stack Frontend: HTML5, CSS3, JavaScript (React.js) ⚛️
-
-Backend: Node.js / Python (Flask) 🐍
-
-Hosting: Render Cloud Platform ☁️
-
-Database: PostgreSQL / MongoDB 🗄️
-
-APIs: RESTful services with JWT authentication 🔑
-
-📂 Project Structure text district-Pauri/ ├── 📁 public/ # Static assets (images, fonts, icons) ├── 📁 src/ │ ├── 📁 components/ # Reusable UI components │ ├── 📁 pages/ # Main page views │ ├── 📁 services/ # API calls & business logic │ └── 📁 styles/ # CSS/Sass stylesheets ├── 📁 config/ # Configuration files ├── 📄 .env.example # Environment variables template ├── 📄 Dockerfile # Containerization setup └── 📄 README.md # You are here! 😄 🤝 Contributing We welcome contributions from the community! Here's how you can help:
+Building for Production
+npm run build
+npm start
+🤝 Contributing
+Contributions are welcome!
 
 🍴 Fork the repository
-
-🌿 Create a feature branch (git checkout -b feature/AmazingFeature)
-
-💾 Commit your changes (git commit -m 'Add some AmazingFeature')
-
-📤 Push to the branch (git push origin feature/AmazingFeature)
-
+🌿 Create a feature branch: git checkout -b feature/AmazingFeature
+💾 Commit your changes: git commit -m 'Add some AmazingFeature'
+📤 Push to the branch: git push origin feature/AmazingFeature
 🎉 Open a Pull Request
+📜 License
+This project is licensed under the MIT License. See the LICENSE file for details.
 
-📞 Contact & Support Department Contact Emoji General Queries varunrawatmailbox2507@gmail.com 📧 Technical Issues varunrawatmailbox2507@gmail.com 🖥️ Emergency Helpline 1800-XXX-XXXX 🆘 Social Media @varunrawatmailbox2507@gmail.com 📱 📜 License This project is licensed under the MIT License – see the LICENSE file for details. © 2026 District Administration, Pauri 🏛️
+📞 Contact
+For queries or issues related to this project, reach out via the repository's Issues page.
 
-🙏 Acknowledgments 🌟 Uttarakhand Government – For vision and support
-
-🌟 Render – For reliable cloud hosting
-
-🌟 Open Source Community – For amazing tools and libraries
-
-🆘 Troubleshooting 503 Error If you're seeing the Service Unavailable error:
-
-Possible Cause Solution 🔄 Server is restarting Wait 2-3 minutes and refresh 📈 High traffic volume Try again during non-peak hours (early morning or late night) 🛠️ Scheduled maintenance Check our status page or social media for updates 🐛 Temporary glitch Clear your browser cache & cookies, then retry 🌐 Stay Connected https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white
-
-🌟 Empowering Citizens, Transforming Governance – One Click at a Time! 🌟
-
-📝 Note: This README was last updated on June 21, 2026. For the latest information, please visit our official portal or contact our support team.
+Built for Pauri District 🏔️
