@@ -249,9 +249,7 @@ export default function App() {
         name: name,
         visible: 
           lowerName === "district-boundary" || 
-          lowerName === "district_boundary" || 
-          lowerName === "landuse-agriculture" || 
-          lowerName === "agricultue_area",
+          lowerName === "district_boundary",
         type: type,
         color: color,
         fillColor: fillColor,

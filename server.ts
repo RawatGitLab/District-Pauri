@@ -45,7 +45,7 @@ const PORT = 3000;
 
 const MONGODB_URI = process.env.MONGODB_URI;
 const MONGODB_DB = process.env.MONGODB_DB;
-const MONGODB_COLLECTION = process.env.MONGODB_COLLECTION;
+const MONGODB_COLLECTION = process.env.MONGODB_COLLECTION;;
 
 let mongoClient: MongoClient | null = null;
 
