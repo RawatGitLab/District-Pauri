@@ -26,7 +26,7 @@ export default function App() {
   const [error, setError] = useState<string | null>(null);
 
   // Map & Interaction state
-  const [activeBaseMap, setActiveBaseMap] = useState<string>("osm");
+  const [activeBaseMap, setActiveBaseMap] = useState<string>("satellite");
   const [selectedFeature, setSelectedFeature] = useState<GisFeature | null>(null);
   const [hoveredFeature, setHoveredFeature] = useState<GisFeature | null>(null);
   const [isTableCollapsed, setIsTableCollapsed] = useState<boolean>(true);
@@ -208,40 +208,40 @@ export default function App() {
       let fillOpacity = 0.4;
 
       const lowerName = name.toLowerCase();
-      if (lowerName.includes("village")) {
-        color = "#ec4899"; // bright pink villages selector
-        fillColor = "#f472b6";
-        weight = 1.5;
-        opacity = 0.95;
-      } else if (lowerName.includes("river") || lowerName.includes("canal") || lowerName.includes("water")) {
-        color = "#0ea5e9"; // stream sky blue
-        fillColor = "#38bdf8";
+
+      if (type === "polygon") {
+        // All Polygon layers are hollow, no fill, only white boundary line
+        color = "#ffffff";
+        fillColor = "transparent";
+        fillOpacity = 0;
+        weight = 2.0;
+        opacity = 0.9;
+      } else if (type === "linestring") {
+        // Line geometries: keep colored strokes (e.g. water blue for rivers/canals), and ensure no fill
+        fillColor = "transparent";
+        fillOpacity = 0;
         weight = 2.5;
         opacity = 1.0;
-        fillOpacity = 0.1;
-      } else if (lowerName.includes("district") || lowerName.includes("boundary")) {
-        color = "#a16207"; // Golden brown outline
-        fillColor = "#fbbf24"; // Mustard polygon fill
-        weight = 2.5;
-        opacity = 0.9;
-        fillOpacity = 0.55; // Solid background core
-      } else if (lowerName.includes("block")) {
-        color = "#c2410c"; // Rust dark
-        fillColor = "#fdba74"; // Peach block
-        weight = 2.0;
-        opacity = 0.8;
-        fillOpacity = 0.25;
-      } else if (lowerName.includes("tehsil") || lowerName.includes("tahsil")) {
-        color = "#15803d"; // Deep forest green
-        fillColor = "#86efac"; // Mint tehsil
-        weight = 2.0;
-        opacity = 0.85;
-        fillOpacity = 0.3;
+        if (lowerName.includes("river") || lowerName.includes("canal") || lowerName.includes("water") || lowerName.includes("irrigation")) {
+          color = "#00bfff"; // DeepSkyBlue stream
+        } else {
+          const hue = (index * 137.5) % 360;
+          color = `hsl(${hue}, 90%, 55%)`; // Vibrant colored lines
+        }
       } else {
-        // Dynamic palette for any other shapefile imported
-        const hue = (index * 137.5) % 360; 
-        color = `hsl(${hue}, 70%, 45%)`;
-        fillColor = `hsl(${hue}, 70%, 65%)`;
+        // Points / other features (e.g. Villages)
+        if (lowerName.includes("village")) {
+          color = "#ec4899"; // bright pink villages selector
+          fillColor = "#f472b6";
+          weight = 1.5;
+          opacity = 0.95;
+          fillOpacity = 0.4;
+        } else {
+          const hue = (index * 137.5) % 360; 
+          color = `hsl(${hue}, 70%, 45%)`;
+          fillColor = `hsl(${hue}, 70%, 65%)`;
+          fillOpacity = 0.4;
+        }
       }
 
       return {
@@ -294,11 +294,12 @@ export default function App() {
     setLayers((prev) => {
       return prev.map((l) => {
         if (l.id === id) {
-          // If the fill color was same as color, update it too
+          // Keep polygons hollow even when updating boundary color
           return { 
             ...l, 
             color: color, 
-            fillColor: color 
+            fillColor: l.type === "polygon" ? "transparent" : color,
+            fillOpacity: l.type === "polygon" ? 0 : l.fillOpacity
           };
         }
         return l;

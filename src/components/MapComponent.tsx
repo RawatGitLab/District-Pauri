@@ -276,10 +276,10 @@ export default function MapComponent({
         try {
           existingLayer.setStyle({
             color: layerConf.color,
-            fillColor: layerConf.fillColor || layerConf.color,
+            fillColor: layerConf.type === "polygon" ? "transparent" : (layerConf.fillColor || layerConf.color),
             weight: layerConf.weight,
             opacity: layerConf.opacity,
-            fillOpacity: layerConf.fillOpacity * layerConf.opacity,
+            fillOpacity: layerConf.type === "polygon" ? 0 : (layerConf.fillOpacity * layerConf.opacity),
           });
         } catch (styleErr) {
           console.warn(`Could not update style for existing layer ${layerConf.name}:`, styleErr);
@@ -315,10 +315,10 @@ export default function MapComponent({
           style: (feature: any) => {
             return {
               color: layerConf.color,
-              fillColor: layerConf.fillColor || layerConf.color,
+              fillColor: layerConf.type === "polygon" ? "transparent" : (layerConf.fillColor || layerConf.color),
               weight: layerConf.weight,
               opacity: layerConf.opacity,
-              fillOpacity: layerConf.fillOpacity * layerConf.opacity,
+              fillOpacity: layerConf.type === "polygon" ? 0 : (layerConf.fillOpacity * layerConf.opacity),
             };
           },
           pointToLayer: (feature: any, latlng: L.LatLng) => {
